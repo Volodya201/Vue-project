@@ -1,30 +1,49 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div class="content">
+    <Header />   
+    <Aside />
+
+    <main class="main">
+      <router-view />
+    </main>
+  </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
 
-nav {
-  padding: 30px;
+<script setup lang="ts">
+    import Header from "@/widgets/Header/Header.vue"
+    import Aside from "@/widgets/Aside/Aside.vue"
+</script>
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+<style>
+  * {
+    margin: 0;
+    padding: 0;
   }
-}
+
+
+  .container {
+        max-width: 95%;
+        height: 100%;
+        margin: 0 auto;
+  }
+
+
+  .content {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 80px auto;
+    grid-template-areas: "header header" "aside main";
+    height: 100vh;
+  }
+
+
+  .main {
+    grid-area: main;
+    padding: 20px;
+  }
+
+  li {
+    list-style: none;
+  }
 </style>
