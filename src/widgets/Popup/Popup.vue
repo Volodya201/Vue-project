@@ -3,8 +3,8 @@
         <div class="blackout" @click="closePopup"></div>
 
         <div class="popup-window">
-            <div class="bouquet">
-                <img src="@/assets/bouquet.svg">
+            <div class="image">
+                <img :src="image || '@/assets/bouquet.svg'" alt="Картинка не найдена!">
             </div>
             <div>
                 <slot></slot>
@@ -19,6 +19,11 @@
 
     const popupStore = usePopupStore()
 
+    interface IProps {
+        image: string|void
+    }
+
+    const props = defineProps<IProps>()
 
     function closePopup() {
         popupStore.closePopup()      
@@ -64,12 +69,15 @@
         z-index: 5;
     }
 
-    .bouquet {
+    .image {
         border: 1px solid #030319;
         border-radius: 21px;
         box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
         display: flex;
         justify-content: center;
         align-items: center;
+
+        font-size: 20px;
+        text-wrap: wrap;
     }
 </style>

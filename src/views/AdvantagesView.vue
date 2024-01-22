@@ -13,7 +13,7 @@
     <AdvantageTable />
 
     <transition>
-        <Popup>
+        <Popup :image="advantagesStore.updatingAdvantage.urlImage">
             <EditAdvantage />
         </Popup>
     </transition>  
@@ -22,9 +22,12 @@
 
 <script setup lang="ts">
     import CreateAdvantage from "@/features/advantages/component/CreateAdvantage.vue"
+    import EditAdvantage from "@/features/advantages/component/EditAdvantage.vue"
+    import { useAdvantagesStore } from "@/features/advantages/store/advantagesStore"
     import AdvantageTable from "@/widgets/AdvantageTable/AdvantageTable.vue"
     import Popup from "@/widgets/Popup/Popup.vue"
-    import EditAdvantage from "@/features/advantages/component/EditAdvantage.vue"
+
+    const advantagesStore = useAdvantagesStore()
 </script>
 
 <style scoped>

@@ -13,7 +13,7 @@
     <CategoryTable />
 
     <transition>
-        <Popup>
+        <Popup :image="categoriesStore.updatingCategory.urlImage">
             <EditCategory />
         </Popup>
     </transition>  
