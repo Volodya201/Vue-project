@@ -11,16 +11,15 @@
                 <td>{{ advantagesProps.item.title }}</td>
                 <EditDescription :id="advantagesProps.item.id" v-model="advantagesProps.item.description" :description="advantagesProps.item.description" />
                 <td class="table-buttons">
-                    <TogglePopup v-slot="childrenProps">
-                        <SelectAdvantage :advantage="advantagesProps.item" :openPopup="childrenProps.onClick" />
-                    </TogglePopup>
-
                     <DeleteAdvantage :categoryId="advantagesProps.item.id">
                         <template v-slot="deleteProps">
                             <DeleteButton @click="deleteProps.onClick()" />
                         </template>
                     </DeleteAdvantage>
                     
+                    <TogglePopup v-slot="childrenProps">
+                        <SelectAdvantage :advantage="advantagesProps.item" :openPopup="childrenProps.onClick" />
+                    </TogglePopup>                   
                 </td>
             </tr>
         </template>
@@ -47,9 +46,13 @@
 </script>
 
 <style scoped>
-    .table-buttons {
-        display: flex;
+    .table-buttons * {
+        /* display: flex;
         justify-content: end;
-        gap: 20px
+        gap: 20px; */
+
+        float: right;
+
+        margin-left: 10px;
     }
 </style>

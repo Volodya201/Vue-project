@@ -10,6 +10,9 @@
             <li>
                 <router-link class="aside-link" to="/advantages">Преимущества</router-link>
             </li>
+            <li>
+                <router-link class="aside-link" to="/contacts">Контакты</router-link>
+            </li>
         </ul>
     </aside>
 </template>

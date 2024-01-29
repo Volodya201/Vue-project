@@ -5,7 +5,7 @@
 
     <CreateCategory />
 
-    <!-- <ErrorsList :errors="categoriesStore.errors" /> -->
+    <ErrorsList :errors="categoriesStore.errors" />
 
     <br>
     <br>

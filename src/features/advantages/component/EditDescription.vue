@@ -1,17 +1,32 @@
 <template>
-    <td v-if="!isEditing" @dblclick="toggleTextarea"> {{ description }}</td>
+    <!-- <td v-if="!isEditing" @dblclick="toggleTextarea"> {{ description }}</td>
     <textarea 
         v-else 
         @blur="onBlur" 
         class="form-control" 
         :value="modelValue"
         @input="($event) => onInput($event)"
-    ></textarea>
+    ></textarea> -->
+
+
+    <td>
+        <div v-if="!isEditing" @dblclick="toggleTextarea">{{ description }}</div>
+        <textarea 
+            v-else 
+            v-focus 
+            @blur="onBlur" 
+            class="form-control" 
+            :value="modelValue"
+            @input="($event) => onInput($event)"
+            autofocus>
+        </textarea>
+    </td>
 </template>
 
 <script lang="ts" setup>
     // import MainTextarea from "@/shared/ui/MainTextarea/MainTextarea.vue"
     import { useAdvantagesStore } from "@/features/advantages/store/advantagesStore"
+    import { vFocus } from "@/shared/directives/index"
     import { ref } from "vue"
 
     const isEditing = ref(false)

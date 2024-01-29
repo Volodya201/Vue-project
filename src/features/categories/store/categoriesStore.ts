@@ -11,7 +11,7 @@ export const useCategoriesStore = defineStore("categories", () => {
         title: "",
         urlImage: ""
     })
-    let errors = reactive<string[]>([])
+    let errors = ref<string[]>([])
 
     const updatingCategory = reactive<ICategory>({
         id: 0,
@@ -44,9 +44,8 @@ export const useCategoriesStore = defineStore("categories", () => {
             newCategory.title = ""
             newCategory.urlImage = ""
         } catch (error:AxiosError|any) {
-            errors = JSON.parse(error.response.data)
-            console.log(errors)
-            
+            errors.value = JSON.parse(error.response.data.message)
+            console.log(errors) 
         }
     }
 
@@ -78,6 +77,7 @@ export const useCategoriesStore = defineStore("categories", () => {
         categories,
         newCategory,
         updatingCategory,
+        errors,
         getCategories,
         selectCategory,
         addCategory,
