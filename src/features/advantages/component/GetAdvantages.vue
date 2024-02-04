@@ -13,7 +13,7 @@
                 <td class="table-buttons">
                     <DeleteAdvantage :categoryId="advantagesProps.item.id">
                         <template v-slot="deleteProps">
-                            <DeleteButton @click="deleteProps.onClick()" />
+                            <DangerButton @click="deleteProps.onClick()" />
                         </template>
                     </DeleteAdvantage>
                     
@@ -28,7 +28,7 @@
 
 <script setup lang="ts">
     import { useAdvantagesStore } from "@/features/advantages/store/advantagesStore"
-    import DeleteButton from "@/shared/ui/DeleteButton/DeleteButton.vue"
+    import DangerButton from "@/shared/ui/DangerButton/DangerButton.vue"
     import TogglePopup from "@/features/popup/components/TogglePopup.vue"
     import SelectAdvantage from "@/features/advantages/component/SelectAdvantage.vue"
     import DeleteAdvantage from "@/features/advantages/component/DeleteAdvantage.vue"

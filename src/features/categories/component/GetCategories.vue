@@ -16,7 +16,7 @@
 
                     <DeleteCategory :categoryId="categoriesProps.item.id">
                         <template v-slot="deleteProps">
-                            <DeleteButton @click="deleteProps.onClick()" />
+                            <DangerButton @click="deleteProps.onClick()" />
                         </template>
                     </DeleteCategory>
                 </td>
@@ -27,7 +27,7 @@
 
 <script setup lang="ts">
     import { useCategoriesStore } from "@/features/categories/store/categoriesStore"
-    import DeleteButton from "@/shared/ui/DeleteButton/DeleteButton.vue"
+    import DangerButton from "@/shared/ui/DangerButton/DangerButton.vue"
     import TogglePopup from "@/features/popup/components/TogglePopup.vue"
     import SelectCategory from "@/features/categories/component/SelectCategory.vue"
     import DeleteCategory from "@/features/categories/component/DeleteCategory.vue"

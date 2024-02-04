@@ -5,6 +5,8 @@ import { IAdvantage, INewAdvantage } from "@/features/advantages/store/types"
 import { instance } from "@/shared/axios"
 import { AxiosError } from "axios"
 
+import { useAlertsStore } from "@/features/alerts/store/alertsStore"
+
 export const useAdvantagesStore = defineStore("advantages", () => {
     const advantages = ref<IAdvantage[]>([])
     const newAdvantage = reactive<INewAdvantage>({
@@ -28,7 +30,6 @@ export const useAdvantagesStore = defineStore("advantages", () => {
             advantages.value = data
         } catch (error) {
             advantages.value = []
-            console.log(error)
         }  
     }
 
@@ -80,14 +81,32 @@ export const useAdvantagesStore = defineStore("advantages", () => {
 
 
     async function editDescription(advantageId:number) {
+        const alertsStore = useAlertsStore()
+
         try {
             const foundAdvantages = advantages.value.find(advantage => advantage.id === advantageId)
 
             if (foundAdvantages) {
-                await instance.patch<IAdvantage>(`advantages/${advantageId}`, updatingAdvantage)
+                const requestResult = await instance.patch<IAdvantage>(`advantages/${advantageId}`, foundAdvantages)
+
+                alertsStore.newAlert({
+                    type: "successful",
+                    header: "Успешно сохранено",
+                    message: `Статус: ${requestResult.status}, статус текст: ${requestResult.statusText}, метод: ${requestResult.config.method}`
+                })
             }
-        } catch (error) {
-            
+        } catch (error:any) {
+            let alertData = {type: "error", header: "", message: ""}
+            const status = error.response.status
+            if (error.name === "AxiosError") {
+                alertData.type = status === 304 ? "information" : "error"
+                alertData.header = status === 304 ? "Не изменено" : "Ошибка запроса или сервера"
+                alertData.message = status === 304 ? `Сервер запрещает изменять на пустые значения` : `URL: "${error.config.url}", сообщение: "${error.message}", метод: "${error.config.method}"`
+            } else {
+                alertData.header = "Ошибка фронтенда"
+                alertData.message = `Произошла ошибка на клиенте, перезагрузите страницу`
+            }
+            alertsStore.newAlert(alertData)
         }
     }
 

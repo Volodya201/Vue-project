@@ -41,6 +41,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        z-index: 200;
     }
     .blackout {
         position: fixed;

@@ -16,7 +16,7 @@
         <Popup :image="advantagesStore.updatingAdvantage.urlImage">
             <EditAdvantage />
         </Popup>
-    </transition>  
+    </transition> 
 </template>
 
 
