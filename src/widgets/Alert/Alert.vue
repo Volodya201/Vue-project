@@ -12,13 +12,18 @@
         </div>
         
         <div class="close-alert">
-            <DangerButton />
+            <DeleteAlert :alert='{type: "error", header: "", message: "", createdAt: 468468468}'>
+                <template>
+                    <DangerButton />
+                </template>
+            </DeleteAlert>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
     import DangerButton from "@/shared/ui/DangerButton/DangerButton.vue"
+    import DeleteAlert from "@/features/alerts/component/DeleteAlert.vue"
 
     interface IProps {
         type: string,
@@ -87,5 +92,8 @@
 
     .close-alert {
         position: absolute;
+        scale: 0.7;
+        top: 2px;
+        right: 2px;
     }
 </style>

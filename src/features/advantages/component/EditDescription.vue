@@ -17,8 +17,7 @@
             @blur="onBlur" 
             class="form-control" 
             :value="modelValue"
-            @input="($event) => onInput($event)"
-            autofocus>
+            @input="($event) => onInput($event)">
         </textarea>
     </td>
 </template>

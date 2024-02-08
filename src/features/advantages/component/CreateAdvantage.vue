@@ -13,6 +13,7 @@
     import mainTextarea from "@/shared/ui/MainTextarea/MainTextarea.vue"
     import primaryButton from "@/shared/ui/PrimaryButton/PrimaryButton.vue"
     import { useAdvantagesStore } from "@/features/advantages/store/advantagesStore"
+    import { vClear } from "@/shared/directives/index"
 
     const advantagesStore = useAdvantagesStore()
 

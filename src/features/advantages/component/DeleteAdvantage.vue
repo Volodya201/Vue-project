@@ -19,7 +19,3 @@
         advantagesStore.deleteAdvantage(props.categoryId)
     }
 </script>
-
-<style scoped>
-
-</style>

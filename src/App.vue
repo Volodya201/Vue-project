@@ -31,6 +31,9 @@
     overflow-x: hidden;
   }
 
+  body * {
+    overflow: hidden;
+  }
 
   .container {
     max-width: 95%;

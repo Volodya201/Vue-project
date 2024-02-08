@@ -2,12 +2,12 @@
     <div>
         <h1 class="header">Номера телефонов</h1>
 
-        <AddPhone />
+        <SavePhones />
     </div>
 </template>
 
 <script lang="ts" setup>
-    import AddPhone from "@/features/phones/component/AddPhone.vue"
+    import SavePhones from "@/features/phones/component/SavePhones.vue"
 </script>
 
 

@@ -3,8 +3,7 @@
         :condition="categoriesStore.categories.length > 0"
         message="Нет категорий"
         :columns="['Категория']"
-        :rows="categoriesStore.categories"
-    >
+        :rows="categoriesStore.categories">
         <template v-slot="categoriesProps: {index:number, item:ICategory}">
             <tr>
                 <th scope="row">{{ categoriesProps.index + 1 }}</th>
@@ -38,9 +37,7 @@
     const categoriesStore = useCategoriesStore()
 
 
-    onMounted(() => {
-        categoriesStore.getCategories()
-    })
+    await categoriesStore.getCategories()
 </script>
 
 <style scoped>

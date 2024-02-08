@@ -1,7 +1,12 @@
 <template>
-    <GetCategories />
+    <Loading>
+        <GetCategories />
+    </Loading>
 </template>
 
 <script lang="ts" setup>
-    import GetCategories from "@/features/categories/component/GetCategories.vue"
+    import Loading from "@/widgets/Loading/Loading.vue"
+    import { defineAsyncComponent } from "vue"
+
+    const GetCategories = defineAsyncComponent(() => import("@/features/categories/component/GetCategories.vue"))
 </script>

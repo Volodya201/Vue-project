@@ -8,7 +8,6 @@
     <ErrorsList :errors="categoriesStore.errors" />
 
     <br>
-    <br>
 
     <CategoryTable />
 
