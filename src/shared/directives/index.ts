@@ -6,5 +6,5 @@ export const vFocus = {
 
 
 export const vClear = {
-    unmounted: (element:HTMLInputElement|HTMLTextAreaElement, binding:DirectiveBinding) => binding.value()
+    unmounted: (element:any, binding:any) => binding.value()
 }

@@ -14,7 +14,7 @@ export const useAdvantagesStore = defineStore("advantages", () => {
         urlImage: "",
         description: ""
     })
-    let errors = reactive<string[]>([])
+    const errors = ref<string[]>([])
 
     const updatingAdvantage = reactive<IAdvantage>({
         id: 0,
@@ -49,7 +49,7 @@ export const useAdvantagesStore = defineStore("advantages", () => {
             newAdvantage.urlImage = ""
             newAdvantage.description = ""
         } catch (error:AxiosError|any) {
-            errors = JSON.parse(error.response.data)           
+            errors.value = JSON.parse(error.response.data.message)
         }
     }
 
@@ -114,6 +114,7 @@ export const useAdvantagesStore = defineStore("advantages", () => {
         advantages,
         newAdvantage,
         updatingAdvantage,
+        errors,
         getAdvantages,
         selectAdvantage,
         addAdvantage,

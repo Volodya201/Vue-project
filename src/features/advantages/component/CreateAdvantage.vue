@@ -1,10 +1,10 @@
 <template>
     <form @submit.prevent="onSubmit" class="create-advantages">
-        <mainInput v-model="advantagesStore.newAdvantage.title" placeholder="Введите название Преимущества..." />
-        <mainInput v-model="advantagesStore.newAdvantage.urlImage" placeholder="Введите url картинки..." />
+        <mainInput v-model="advantagesStore.newAdvantage.title" placeholder="Введите название Преимущества..." :clear="true" />
+        <mainInput v-model="advantagesStore.newAdvantage.urlImage" placeholder="Введите url картинки..." :clear="true" />
         <primaryButton text="Создать" />
 
-        <mainTextarea class="description" v-model="advantagesStore.newAdvantage.description" placeholder="Введите описание Преимущества..." />
+        <mainTextarea class="description" v-model="advantagesStore.newAdvantage.description" placeholder="Введите описание Преимущества..." :clear="true" />
     </form>
 </template>
 

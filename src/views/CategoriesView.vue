@@ -7,8 +7,6 @@
 
     <ErrorsList :errors="categoriesStore.errors" />
 
-    <br>
-
     <CategoryTable />
 
     <transition>
@@ -27,14 +25,6 @@
     import { useCategoriesStore } from "@/features/categories/store/categoriesStore"
 
     const categoriesStore = useCategoriesStore()
-
-
-
-
-    import { usePopupStore } from "@/features/popup/store/popupStore"
-
-
-    const popupStore = usePopupStore()
 </script>
 
 

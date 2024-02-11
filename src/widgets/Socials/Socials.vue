@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="header">Номера телефонов</h1>
+        <h1 class="header">Ссылки соцсетей</h1>
 
         <Loading>
             <ControlPhones />
@@ -8,12 +8,13 @@
     </div>
 </template>
 
+
 <script lang="ts" setup>
     import Loading from "@/widgets/Loading/Loading.vue"
 
     import { defineAsyncComponent } from "vue"
 
-    const ControlPhones = defineAsyncComponent(() => import("@/features/phones/component/ControlPhones.vue"))
+    const ControlPhones = defineAsyncComponent(() => import("@/features/socials/component/ControlSocials.vue"))
 </script>
 
 

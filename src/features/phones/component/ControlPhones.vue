@@ -1,13 +1,13 @@
 <template>
     <transition-group tag="div" class="phones-list" name="phones">
         <template v-for="(phone, index) of phonesStore.phones" :key="phone.id">
-            <MainInput v-model="phone.text" /> <!-- mask="+7(###)-###-##-##" -->
+            <MainInput v-model="phone.phone" placeholder="Номер телефона" /> <!-- mask="+7(###)-###-##-##" -->
 
             <PrimaryButtonCircle v-if="index === 0" text="+" @click="phonesStore.addPhone()"/>
             <DangerButton v-else @click="phonesStore.deletePhone(phone.id)"/>
         </template>
-        <PrimaryButton text="Сохранить"/>
-    </transition-group>  
+        <PrimaryButton key="1.5" text="Сохранить" @click="async () => await phonesStore.savePhones()"/>
+    </transition-group>
 
 </template>
 
@@ -17,9 +17,13 @@
     import PrimaryButton from "@/shared/ui/PrimaryButton/PrimaryButton.vue"
     import DangerButton from "@/shared/ui/DangerButton/DangerButton.vue"
     import { usePhonesStore } from "@/features/phones/store/phonesStore"
-    import { MaskInput } from 'vue-3-mask'
+    //import { MaskInput } from 'vue-3-mask'
+    import { onMounted } from "vue"
 
     const phonesStore = usePhonesStore()
+
+    await phonesStore.getPhones()
+    
 </script>
 
 
@@ -34,7 +38,7 @@
     .phones-enter-active,
     .phones-leave-active,
     .phones-move {
-        transition: 1s linear;
+        transition: 0.3s linear;
     }
 
     .phones-leave-active {

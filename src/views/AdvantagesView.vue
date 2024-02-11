@@ -5,7 +5,7 @@
 
     <CreateAdvantage />
 
-    <!-- errors -->
+    <ErrorsList :errors="advantagesStore.errors" />
 
     <br>
     <br>
@@ -25,6 +25,7 @@
     import EditAdvantage from "@/features/advantages/component/EditAdvantage.vue"
     import { useAdvantagesStore } from "@/features/advantages/store/advantagesStore"
     import AdvantageTable from "@/widgets/AdvantageTable/AdvantageTable.vue"
+    import ErrorsList from "@/entities/ErrorsList/ErrorsList.vue"
     import Popup from "@/widgets/Popup/Popup.vue"
 
     const advantagesStore = useAdvantagesStore()

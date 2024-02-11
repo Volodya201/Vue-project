@@ -1,7 +1,7 @@
 <template>
     <form @submit.prevent="onSubmit" class="create-category">
-        <mainInput v-model="categoriesStore.newCategory.title" placeholder="Введите название категории..." />
-        <mainInput v-model="categoriesStore.newCategory.urlImage" placeholder="Введите url картинки..." />
+        <mainInput v-model="categoriesStore.newCategory.title" placeholder="Введите название категории..." :clear="true" />
+        <mainInput v-model="categoriesStore.newCategory.urlImage" placeholder="Введите url картинки..." :clear="true" />
         <primaryButton text="Создать" />
     </form>
     

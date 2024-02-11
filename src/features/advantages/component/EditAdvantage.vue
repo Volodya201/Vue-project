@@ -1,7 +1,7 @@
 <template>
     <form class="form" @submit.prevent="onsubmit">
-        <MainInput v-model="advantagesStore.updatingAdvantage.title" class="full-width" />
-        <MainInput v-model="advantagesStore.updatingAdvantage.urlImage" class="full-width" />
+        <MainInput v-model="advantagesStore.updatingAdvantage.title" class="full-width" placeholder="Название" />
+        <MainInput v-model="advantagesStore.updatingAdvantage.urlImage" class="full-width" placeholder="URL картинки" />
         <BigSaveButton text="Сохранить" class="full-width btn" />
     </form>
     

@@ -40,9 +40,7 @@
     const advantagesStore = useAdvantagesStore()
 
 
-    onMounted(() => {
-        advantagesStore.getAdvantages()
-    })
+    await advantagesStore.getAdvantages()
 </script>
 
 <style scoped>
