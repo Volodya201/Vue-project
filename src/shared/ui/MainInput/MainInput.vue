@@ -1,5 +1,10 @@
 <template>
-    <input class="input" v-clear="() => clear"  @input="($event:ChangeEvent<HTMLInputElement>) => onInput($event.target.value)" :value="modelValue" :placeholder="placeholder" />
+    <input 
+        class="input" 
+        v-clear="() => clear" 
+        @input="($event:ChangeEvent<HTMLInputElement>) => onInput($event.target.value)" 
+        :value="modelValue" 
+        :placeholder="placeholder" />
 </template>
 
 <script setup lang="ts">
@@ -8,7 +13,8 @@
     interface IProps {
         placeholder: string,
         modelValue: any,
-        clear?: boolean
+        clear?: boolean,
+        mask?: string
     }
 
     const props = defineProps<IProps>()

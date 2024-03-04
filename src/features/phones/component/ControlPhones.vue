@@ -1,7 +1,7 @@
 <template>
     <transition-group tag="div" class="phones-list" name="phones">
         <template v-for="(phone, index) of phonesStore.phones" :key="phone.id">
-            <MainInput v-model="phone.phone" placeholder="Номер телефона" /> <!-- mask="+7(###)-###-##-##" -->
+            <MainInput v-model="phone.phone" placeholder="Номер телефона" v-mask="'+7(###)-###-##-##'"  />
 
             <PrimaryButtonCircle v-if="index === 0" text="+" @click="phonesStore.addPhone()"/>
             <DangerButton v-else @click="phonesStore.deletePhone(phone.id)"/>
@@ -17,8 +17,6 @@
     import PrimaryButton from "@/shared/ui/PrimaryButton/PrimaryButton.vue"
     import DangerButton from "@/shared/ui/DangerButton/DangerButton.vue"
     import { usePhonesStore } from "@/features/phones/store/phonesStore"
-    //import { MaskInput } from 'vue-3-mask'
-    import { onMounted } from "vue"
 
     const phonesStore = usePhonesStore()
 

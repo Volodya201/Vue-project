@@ -1,5 +1,6 @@
 <template>
-  <div class="content">
+  <div class="content" v-if="authStore.isAuth">
+    <FullscreenLoading />
     <Header />   
     <Aside />
 
@@ -11,6 +12,12 @@
       <Alert v-for="item of alertsStore.alerts" :key="item.createdAt" :type="item.type" :header="item.header" :message="item.message" />
     </TransitionGroup>
   </div>
+  <div v-else>
+    <FullscreenLoading />
+    <main style="height: 100svh">
+      <router-view />
+    </main>
+  </div>
 </template>
 
 
@@ -18,10 +25,12 @@
     import Header from "@/widgets/Header/Header.vue"
     import Aside from "@/widgets/Aside/Aside.vue"
     import Alert from "@/widgets/Alert/Alert.vue"
-
+    import FullscreenLoading from "@/widgets/FullscreenLoading/FullscreenLoading.vue"
+    import { useAuthStore } from "@/features/auth/store/index"
     import { useAlertsStore } from "@/features/alerts/store/alertsStore"
 
     const alertsStore = useAlertsStore()
+    const authStore = useAuthStore()
 </script>
 
 <style>
@@ -68,7 +77,9 @@
   }
 
 
-
+  img {
+    width: 100%;
+  }
 
   .alerts-move,
   .alerts-enter-active,
