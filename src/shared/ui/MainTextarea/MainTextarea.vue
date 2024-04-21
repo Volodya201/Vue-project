@@ -6,6 +6,7 @@
         :placeholder="placeholder" 
         wrap="soft" 
         rows="1" 
+        :cols="cols||3"
         id="textarea" 
         v-clear="() => clear()"
     ></textarea>
@@ -17,7 +18,8 @@
     interface IProps {
         placeholder: string,
         modelValue: any,
-        clear?: boolean
+        clear?: boolean,
+        cols?: string
     }
 
     const props = defineProps<IProps>()

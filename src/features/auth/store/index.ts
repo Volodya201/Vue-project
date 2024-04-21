@@ -2,9 +2,11 @@ import { instance } from "@/shared/axios"
 import { defineStore } from "pinia"
 import { ref, reactive } from "vue"
 import { useLoadingStore } from "@/features/loading/store/index"
+import router from "@/router"
 
 export const useAuthStore = defineStore("auth", () => {
-    const isAuth = ref(false)
+    const isAuth = ref<boolean>(false)
+    const isChecked = ref<boolean>(false)
 
     const message = ref("")
     const status = ref(true)
@@ -25,6 +27,24 @@ export const useAuthStore = defineStore("auth", () => {
         newPassword: ""
     })
 
+
+    if (!isChecked.value) {
+        isLogin()
+    }
+
+    async function isLogin() {
+        console.log("I am Vova")
+        
+        try {
+            const data = await instance.get("auth/check-login")
+
+            if (!data) throw new Error(" ")
+
+            isAuth.value = true
+        } catch (error) {
+            isAuth.value = false
+        }
+    }
 
     async function registerUser() {
         const loadingStore = useLoadingStore()
@@ -89,6 +109,13 @@ export const useAuthStore = defineStore("auth", () => {
         }
     }
 
+    async function logout() {
+        localStorage.setItem("accessToken", "")
+        await instance.get("auth/logout")
+        isAuth.value = false
+        router.push("/login")
+    }
+
 
     return {
         isAuth,
@@ -101,6 +128,7 @@ export const useAuthStore = defineStore("auth", () => {
         activateAccount,
         loginUser,
         resetPassword,
-        confirmPassword
+        confirmPassword,
+        logout
     }
 })

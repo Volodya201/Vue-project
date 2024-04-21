@@ -7,6 +7,7 @@ import RegisterView from "../views/RegisterView.vue"
 import ActivationView from "../views/ActivationView.vue"
 import LoginView from "../views/LoginView.vue"
 import ResetPassword from "../views/ResetPassword.vue"
+import CreateProductView from '@/views/CreateProductView.vue'
 //@ts-ignore
 import ConfirmPassword from '@/views/ConfirmPasswordView.vue'
 
@@ -55,6 +56,11 @@ const routes: Array<RouteRecordRaw> = [
     path: "/confirm-password/:key",
     name: "confirmPassword",
     component: ConfirmPassword
+  },
+  {
+    path: "/create-product",
+    name: "createProduct",
+    component: CreateProductView
   }
 ]
 

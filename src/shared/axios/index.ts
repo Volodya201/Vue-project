@@ -39,5 +39,10 @@ instance.interceptors.response.use(config => {
 })
 
 
+instance.interceptors.request.use(config => {
+    return config
+})
+
+
 
 export {instance}

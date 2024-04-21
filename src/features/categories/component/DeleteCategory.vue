@@ -15,8 +15,7 @@
 
     const props = defineProps<IProps>()
 
-    function deleteCategory() {
-        console.log("smth")     
+    function deleteCategory() { 
         categoriesStore.deleteCategory(props.categoryId)
     }
 </script>

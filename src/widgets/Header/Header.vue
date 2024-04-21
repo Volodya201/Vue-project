@@ -5,7 +5,11 @@
                 <img src="@/assets/logo.svg">
             </router-link>
 
-            <SecondaryButton text="Выйти" />
+            <logout>
+                <template v-slot="logoutProps">
+                    <SecondaryButton text="Выйти" @click="logoutProps.onClick()" />
+                </template>
+            </logout>
         </div>
     </header>
 </template>
@@ -13,6 +17,7 @@
 
 <script setup lang="ts">
     import SecondaryButton from "@/shared/ui/SecondaryButton/SecondaryButton.vue"
+    import logout from "@/features/auth/component/logout.vue"
 </script>
 
 
