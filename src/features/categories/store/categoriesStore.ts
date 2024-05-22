@@ -2,7 +2,7 @@ import { defineStore } from "pinia"
 import { reactive, ref } from "vue"
 
 import { ICategory, INewCategory } from "@/features/categories/store/types"
-import { instance } from "@/shared/axios"
+import { instanceNest } from "@/shared/axios"
 import { AxiosError } from "axios"
 
 export const useCategoriesStore = defineStore("categories", () => {
@@ -22,7 +22,7 @@ export const useCategoriesStore = defineStore("categories", () => {
 
     async function getCategories() {
         try {
-            const { data } = await instance.get("categories")
+            const { data } = await instanceNest.get("categories")
             categories.value = data
         } catch (error) {
             categories.value = []
@@ -37,7 +37,7 @@ export const useCategoriesStore = defineStore("categories", () => {
 
     async function addCategory() {
         try {
-            const { data } = await instance.post<ICategory>("categories", newCategory)
+            const { data } = await instanceNest.post<ICategory>("categories", newCategory)
             
             categories.value.push(data)
             newCategory.title = ""
@@ -49,7 +49,7 @@ export const useCategoriesStore = defineStore("categories", () => {
 
     async function deleteCategory(categoryId:number) {
         try {
-            await instance.delete(`categories/${categoryId}`)
+            await instanceNest.delete(`categories/${categoryId}`)
 
             categories.value = categories.value.filter(category => category.id !== categoryId)
         } catch (error) {
@@ -59,7 +59,7 @@ export const useCategoriesStore = defineStore("categories", () => {
 
     async function editCategory(categoryId:number) {
         try {
-            const {data} = await instance.patch<ICategory>(`categories/${categoryId}`, updatingCategory)
+            const {data} = await instanceNest.patch<ICategory>(`categories/${categoryId}`, updatingCategory)
 
             const foundCategories = categories.value.find(category => category.id === categoryId)
             if (foundCategories) {

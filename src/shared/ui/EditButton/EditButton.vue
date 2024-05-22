@@ -19,4 +19,8 @@
         height: 37px;
         margin: 0 15px 0 0;
     }
+
+    img {
+        scale: 0.6;
+    }
 </style>

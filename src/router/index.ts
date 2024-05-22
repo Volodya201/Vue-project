@@ -8,60 +8,166 @@ import ActivationView from "../views/ActivationView.vue"
 import LoginView from "../views/LoginView.vue"
 import ResetPassword from "../views/ResetPassword.vue"
 import CreateProductView from '@/views/CreateProductView.vue'
-//@ts-ignore
+import UpdateProductView from '@/views/UpdateProductView.vue'
 import ConfirmPassword from '@/views/ConfirmPasswordView.vue'
+import ProductsView from '@/views/ProductsView.vue'
+import AuthLayout from '@/layouts/AuthLayout.vue'
+import MainLayout from '@/layouts/MainLayout.vue'
+import OrdersView from '@/views/OrdersView.vue'
+import CreateOrderView from '@/views/CreateOrderView.vue'
+import ViewOrderView from '@/views/ViewOrderView.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: MainLayout,
+    children: [{
+      path: "",
+      name: "home-page",
+      component: HomeView
+    }]
   },
   {
     path: "/categories",
     name: "categories",
-    component: CategoriesView
+    component: MainLayout,
+    children: [{
+      path: "",
+      name: "categories-page",
+      component: CategoriesView
+    }]
   },
   {
     path: "/advantages",
     name: "advantages",
-    component: AdvantagesView
+    component: MainLayout,
+    children: [{
+      path: "",
+      name: "advantages-page",
+      component: AdvantagesView
+    }]
   },
   {
     path: "/contacts",
     name: "contacts",
-    component: ContactsView
+    component: MainLayout,
+    children: [{
+      path: "",
+      name: "contacts-page",
+      component: HomeView
+    }]
   },
   {
     path: "/register",
     name: "register",
-    component: RegisterView
+    component: AuthLayout,
+    children: [{
+      path: "",
+      name: "register-page",
+      component: RegisterView
+    }]
   },
   {
     path: "/login",
     name: "login",
-    component: LoginView
+    component: AuthLayout,
+    children: [{
+      path: "",
+      name: "login-page",
+      component: LoginView
+    }]
   },
   {
     path: "/auth/:key",
     name: "activateAccount",
-    component: ActivationView
+    component: AuthLayout,
+    children: [{
+      path: "",
+      name: "activate-page",
+      component: ActivationView
+    }]
   },
   {
     path: "/reset-password",
     name: "resetPassword",
-    component: ResetPassword
+    component: AuthLayout,
+    children: [{
+      path: "",
+      name: "resetPassword-page",
+      component: ResetPassword
+    }]
   },
   {
     path: "/confirm-password/:key",
     name: "confirmPassword",
-    component: ConfirmPassword
+    component: AuthLayout,
+    children: [{
+      path: "",
+      name: "confirmPassword-page",
+      component: ConfirmPassword
+    }]
+  },
+  {
+    path: "/products",
+    name: "products",
+    component: MainLayout,
+    children: [{
+      path: "",
+      name: "products-page",
+      component: ProductsView
+    }]
   },
   {
     path: "/create-product",
     name: "createProduct",
-    component: CreateProductView
-  }
+    component: MainLayout,
+    children: [{
+      path: "",
+      name: "createProduct-page",
+      component: CreateProductView
+    }]
+  },
+  {
+    path: "/update-product",
+    name: "updateProduct",
+    component: MainLayout,
+    children: [{
+      path: "",
+      name: "updateProduct-page",
+      component: UpdateProductView
+    }]
+  },
+  {
+    path: "/orders",
+    name: "orders",
+    component: MainLayout,
+    children: [{
+      path: "",
+      name: "orders-page",
+      component: OrdersView
+    }]
+  },
+  {
+    path: "/create-order",
+    name: "createOrder",
+    component: MainLayout,
+    children: [{
+      path: "",
+      name: "createOrder-page",
+      component: CreateOrderView
+    }]
+  },
+  {
+    path: "/view-order",
+    name: "viewOrder",
+    component: MainLayout,
+    children: [{
+      path: "",
+      name: "viewOrder-page",
+      component: ViewOrderView
+    }]
+  },
 ]
 
 const router = createRouter({

@@ -10,7 +10,7 @@
     const advantagesStore = useAdvantagesStore()
 
     interface IProps {
-        categoryId: number
+        advantageId: number
     }
 
     const props = defineProps<IProps>()

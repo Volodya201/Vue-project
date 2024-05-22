@@ -8,7 +8,7 @@
             </tr>
         </thead>
         <tbody>
-            <slot 
+            <slot class="rows" 
                 v-for="(item, index) of rows" 
                 :key="item.id" 
                 :item="item"
@@ -32,3 +32,9 @@
 
     const props = defineProps<IProps>()
 </script>
+
+<style scoped>
+    .rows {
+        display: flex;
+    }
+</style>

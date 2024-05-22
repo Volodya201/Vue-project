@@ -6,24 +6,21 @@
 
         <CreateProduct />
 
-
-
-        <!-- <ErrorsList :errors="categoriesStore.errors" /> -->
-
-        <!-- <CategoryTable /> -->
-        
-
-        <!-- <transition>
-            <Popup :image="categoriesStore.updatingCategory.urlImage">
-                <EditCategory />
+        <transition>
+            <Popup :image="productsStore.newProduct.url_image">
+                <EditProductImage />
             </Popup>
-        </transition>   -->
+        </transition>  
     </div>
 </template>
 
 <script setup lang="ts">
     import CreateProduct from '@/features/products/components/CreateProduct.vue'
-    import MainSelect from "@/shared/ui/MainSelect/MainSelect.vue"
+    import Popup from '@/widgets/Popup/Popup.vue'
+    import { useProductsStore } from '@/features/products/store/productsStore'
+    import EditProductImage from '@/features/products/components/EditProductImage'
+
+    const productsStore = useProductsStore()
 </script>
 
 <style scoped>

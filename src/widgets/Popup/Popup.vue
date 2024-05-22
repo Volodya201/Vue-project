@@ -60,8 +60,9 @@
         position: relative;
         background-color: #fff;
         min-width: 62%;
-        max-width: 90%;
+        max-width: 62%;
         min-height: 60%;
+        max-height: 60%;
         border-radius: 26px;
         padding: 25px;
         display: grid;
@@ -80,5 +81,10 @@
 
         font-size: 20px;
         text-wrap: wrap;
+    }
+
+    .image img {
+        max-width: 90%;
+        max-height: 90%;
     }
 </style>

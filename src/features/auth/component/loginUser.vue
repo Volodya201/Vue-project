@@ -5,7 +5,7 @@
         <PrimaryButton text="Войти" />
         <p>Ещё нет аккаунта? <router-link to="/register">Зарегистрируйтесь</router-link></p>
         <p>Забыли пароль? <router-link to="/reset-password">Сбросьте его</router-link></p>
-        <p>{{ authStore.message }}</p>
+        <p id="authMessage">{{ authStore.message }}</p>
     </form>
 </template>
 

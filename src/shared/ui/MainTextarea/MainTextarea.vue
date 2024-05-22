@@ -46,6 +46,8 @@
         border-radius: 31px;
         padding: 10px 15px;
         font-size: 20px;
-        font-weight: 700;      
+        
+        font-family: "OpenSans";
+        font-weight: 700;
     }
 </style>

@@ -11,7 +11,7 @@
                 <td>{{ advantagesProps.item.title }}</td>
                 <EditDescription :id="advantagesProps.item.id" v-model="advantagesProps.item.description" :description="advantagesProps.item.description" />
                 <td class="table-buttons">
-                    <DeleteAdvantage :categoryId="advantagesProps.item.id">
+                    <DeleteAdvantage :advantageId="advantagesProps.item.id">
                         <template v-slot="deleteProps">
                             <DangerButton @click="deleteProps.onClick()" />
                         </template>
@@ -19,7 +19,7 @@
                     
                     <TogglePopup v-slot="childrenProps">
                         <SelectAdvantage :advantage="advantagesProps.item" :openPopup="childrenProps.onClick" />
-                    </TogglePopup>                   
+                    </TogglePopup>
                 </td>
             </tr>
         </template>

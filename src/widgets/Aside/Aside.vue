@@ -8,7 +8,13 @@
                 <router-link class="aside-link" to="/categories">Категории</router-link>
             </li>
             <li>
+                <router-link class="aside-link" to="/products">Товары</router-link>
+            </li>
+            <li>
                 <router-link class="aside-link" to="/advantages">Преимущества</router-link>
+            </li>
+            <li>
+                <router-link class="aside-link" to="/orders">Заказы</router-link>
             </li>
             <li>
                 <router-link class="aside-link" to="/contacts">Контакты</router-link>

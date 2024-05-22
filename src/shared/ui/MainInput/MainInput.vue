@@ -4,7 +4,8 @@
         v-clear="() => clear" 
         @input="($event:ChangeEvent<HTMLInputElement>) => onInput($event.target.value)" 
         :value="modelValue" 
-        :placeholder="placeholder" />
+        :placeholder="placeholder"
+        :disabled="disable" />
 </template>
 
 <script setup lang="ts">
@@ -14,7 +15,8 @@
         placeholder: string,
         modelValue: any,
         clear?: boolean,
-        mask?: string
+        mask?: string,
+        disable?: boolean
     }
 
     const props = defineProps<IProps>()
@@ -38,6 +40,12 @@
         border-radius: 31px;
         padding: 10px 15px;
         font-size: 20px;
+        
+        font-family: "OpenSans";
         font-weight: 700;
+    }
+
+    .input:disabled {
+        background-color: #cfcfcf;
     }
 </style>
