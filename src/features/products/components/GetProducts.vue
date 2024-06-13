@@ -2,6 +2,8 @@
     <Table 
         :condition="productsStore.products.length > 0"
         message="Нет товаров"
+        :roleCondition="true"
+        roleMessage="Недостаточно прав"
         :columns="['Товар', 'Цена', 'Состав', 'Описание']"
         :rows="productsStore.products">
         <template v-slot="productsProps: {index:number, item:IProduct}">

@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import CategoriesView from '../views/CategoriesView.vue'
-import AdvantagesView from '../views/AdvantagesView.vue'
-import ContactsView from '../views/ContactsView.vue'
-import RegisterView from "../views/RegisterView.vue"
-import ActivationView from "../views/ActivationView.vue"
-import LoginView from "../views/LoginView.vue"
-import ResetPassword from "../views/ResetPassword.vue"
+import HomeView from '@/views/HomeView.vue'
+import CategoriesView from '@/views/CategoriesView.vue'
+import AdvantagesView from '@/views/AdvantagesView.vue'
+import ContactsView from '@/views/ContactsView.vue'
+import RegisterView from "@/views/RegisterView.vue"
+import ActivationView from "@/views/ActivationView.vue"
+import LoginView from "@/views/LoginView.vue"
+import ResetPassword from "@/views/ResetPassword.vue"
 import CreateProductView from '@/views/CreateProductView.vue'
 import UpdateProductView from '@/views/UpdateProductView.vue'
 import ConfirmPassword from '@/views/ConfirmPasswordView.vue'
@@ -16,6 +16,7 @@ import MainLayout from '@/layouts/MainLayout.vue'
 import OrdersView from '@/views/OrdersView.vue'
 import CreateOrderView from '@/views/CreateOrderView.vue'
 import ViewOrderView from '@/views/ViewOrderView.vue'
+import ApplicationsView from '@/views/ApplicationsView.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -55,7 +56,7 @@ const routes: Array<RouteRecordRaw> = [
     children: [{
       path: "",
       name: "contacts-page",
-      component: HomeView
+      component: ContactsView
     }]
   },
   {
@@ -168,6 +169,16 @@ const routes: Array<RouteRecordRaw> = [
       component: ViewOrderView
     }]
   },
+  {
+    path: "/applications",
+    name: "applications",             
+    component: MainLayout,
+    children: [{
+      path: "",
+      name: "applications-page",
+      component: ApplicationsView
+    }]
+  }
 ]
 
 const router = createRouter({

@@ -2,6 +2,8 @@
     <Table 
         :condition="ordersStore.orders.length > 0"
         message="Нет заказов"
+        :roleCondition="true"
+        roleMessage="Недостаточно прав"
         :columns="['Сумма', 'Пользователь']"
         :rows="ordersStore.orders"
     >

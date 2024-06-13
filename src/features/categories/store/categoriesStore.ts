@@ -12,6 +12,7 @@ export const useCategoriesStore = defineStore("categories", () => {
         urlImage: ""
     })
     const errors = ref<string[]>([])
+    const enoughAccess = ref<boolean>(false)
 
     const updatingCategory = reactive<ICategory>({
         id: 0,
@@ -24,8 +25,11 @@ export const useCategoriesStore = defineStore("categories", () => {
         try {
             const { data } = await instanceNest.get("categories")
             categories.value = data
+
+            enoughAccess.value = true
         } catch (error) {
             categories.value = []
+            enoughAccess.value = false
         }  
     }
 
@@ -37,13 +41,28 @@ export const useCategoriesStore = defineStore("categories", () => {
 
     async function addCategory() {
         try {
-            const { data } = await instanceNest.post<ICategory>("categories", newCategory)
-            
-            categories.value.push(data)
-            newCategory.title = ""
-            newCategory.urlImage = ""
+            const { data } = await instanceNest.post<ICategory|AxiosError>("categories", newCategory)
+
+            console.log("data: ", data)
+
+            //@ts-ignore
+            if (data.statusCode === 400) throw new Error(JSON.stringify(data))
+            //@ts-ignore
+            if (data.statusCode === 403) throw new Error("403")
+            //@ts-ignore
+            if (data.statusCode === 500) throw new Error("500")
+
+            // categories.value.push(data.data)
+            // newCategory.title = ""
+            // newCategory.urlImage = ""
         } catch (error:AxiosError|any) {
-            errors.value = JSON.parse(error.response.data.message)
+            const currentError = JSON.parse(error.message)
+
+            errors.value = []
+            
+            if (currentError === "403") errors.value.push("Недостаточно прав")
+            else if (currentError === "500") errors.value.push("Ошибка сервера, повторите попытку позже")
+            else errors.value = [...currentError.message]
         }
     }
 
@@ -76,6 +95,7 @@ export const useCategoriesStore = defineStore("categories", () => {
         newCategory,
         updatingCategory,
         errors,
+        enoughAccess,
         getCategories,
         selectCategory,
         addCategory,

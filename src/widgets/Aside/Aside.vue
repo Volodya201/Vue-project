@@ -17,6 +17,9 @@
                 <router-link class="aside-link" to="/orders">Заказы</router-link>
             </li>
             <li>
+                <router-link class="aside-link" to="/applications">Заявки</router-link>
+            </li>
+            <li>
                 <router-link class="aside-link" to="/contacts">Контакты</router-link>
             </li>
         </ul>

@@ -19,6 +19,7 @@
     import PrimaryButton from "@/shared/ui/PrimaryButton/PrimaryButton.vue"
     import { useAuthStore } from "@/features/auth/store/index"
     import { onMounted } from "vue"
+    import router from "@/router"
 
     const authStore = useAuthStore()
 
@@ -29,6 +30,14 @@
     onMounted(() => {
         authStore.status = false
     })
+
+    async function checkLogin() {
+        await authStore.isLogin()
+
+        if (authStore.isAuth) {
+            router.replace("/")
+        }
+    }
 </script>
 
 <style scoped>

@@ -50,5 +50,45 @@ const instanceNest = axios.create({
     withCredentials: true
 })
 
+instanceNest.interceptors.request.use((config) => {
+    config.headers.Authorization = "Bearer " + localStorage.getItem("accessToken")
+
+    return config
+})
+
+instanceNest.interceptors.response.use(config => {
+    return config
+}, async (error) => {
+    const originalRequest = error.config
+
+    if (error.response.status === 401) {  
+        const authStore = useAuthStore()
+        try {
+            const tokens = await instanceNest.get("auth/refresh")
+
+            if (tokens.status >= 400) throw new Error()
+
+            localStorage.setItem("accessToken", tokens.data.accessToken)
+
+            originalRequest.headers.Authorization = "Bearer " + tokens.data.accessToken
+
+            authStore.isAuth = true
+
+            return instanceNest(originalRequest)
+        } catch (refreshError) {
+            console.log("push to login error")
+            router.push("/login")
+            authStore.isAuth = false
+        }
+    }
+
+    return error.response
+})
+
+
+instanceNest.interceptors.request.use(config => {
+    return config
+})
+
 
 export {instance, instanceNest}

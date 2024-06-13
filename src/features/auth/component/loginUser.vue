@@ -15,6 +15,7 @@
     import { useAuthStore } from "@/features/auth/store/index"
     import { useRouter } from "vue-router"
     import { onMounted } from "vue"
+    import router from "@/router"
 
     const authStore = useAuthStore()
 
@@ -30,6 +31,16 @@
     onMounted(() => {
         authStore.status = true
     })
+
+    async function checkLogin() {
+        await authStore.isLogin()
+
+        if (authStore.isAuth) {
+            router.replace("/")
+        }
+    }
+
+    checkLogin()
 </script>
 
 <style scoped>

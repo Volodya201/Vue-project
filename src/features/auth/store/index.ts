@@ -1,4 +1,4 @@
-import { instance } from "@/shared/axios"
+import { instanceNest } from "@/shared/axios"
 import { defineStore } from "pinia"
 import { ref, reactive } from "vue"
 import { useLoadingStore } from "@/features/loading/store/index"
@@ -28,17 +28,11 @@ export const useAuthStore = defineStore("auth", () => {
     })
 
 
-    if (!isChecked.value) {
-        isLogin()
-    }
-
-    async function isLogin() {
-        console.log("I am Vova")
-        
+    async function isLogin() {        
         try {
-            const data = await instance.get("auth/check-login")
+            const data = await instanceNest.get("auth/check-login")
 
-            if (!data) throw new Error(" ")
+            if (data.status >= 400) throw new Error(" ")
 
             isAuth.value = true
         } catch (error) {
@@ -50,9 +44,13 @@ export const useAuthStore = defineStore("auth", () => {
         const loadingStore = useLoadingStore()
         loadingStore.show()
         try {
-            await instance.post("auth/register", registerData)
+            await instanceNest.post("auth/register", registerData)
             message.value = "Вам на емейл отправлена ссылка для активации"
             status.value = true
+
+            registerData.email = ""
+            registerData.username = ""
+            registerData.password = ""
         } catch (error) {
             message.value = "Пользователь с таким имейлом уже существует"
             status.value = false
@@ -64,12 +62,14 @@ export const useAuthStore = defineStore("auth", () => {
         const loadingStore = useLoadingStore()
         loadingStore.show()
         try {
-            const { data } = await instance.post("auth/login", loginData)
+            const { data } = await instanceNest.post("auth/login", loginData)
 
             localStorage.setItem("accessToken", data.accessToken)
 
             isAuth.value = true
             status.value = true
+            loginData.email = ""
+            loginData.password = ""
         } catch (error) {
             message.value = "Логин или пароль неверен!"
             status.value = false
@@ -79,7 +79,8 @@ export const useAuthStore = defineStore("auth", () => {
 
     async function activateAccount(key:any) {
         try {
-            await instance.patch("auth/activate/" + key)
+            const { data } = await instanceNest.patch("auth/activate/" + key)
+            console.log(data)
             status.value = true
         } catch (error) {
             status.value = false
@@ -90,7 +91,7 @@ export const useAuthStore = defineStore("auth", () => {
         const loadingStore = useLoadingStore()
         loadingStore.show()
         try {
-            await instance.post("auth/reset-password", resetPasswordData)
+            await instanceNest.post("auth/reset-password", resetPasswordData)
             status.value = true
             message.value = "Зайдите на электронную почту для подтверждения"
         } catch (error) {
@@ -102,7 +103,7 @@ export const useAuthStore = defineStore("auth", () => {
 
     async function confirmPassword(key:any) {
         try {
-            await instance.patch("auth/confirm-password/" + key)
+            await instanceNest.patch("auth/confirm-password/" + key)
             status.value = true
         } catch (error) {
             status.value = false
@@ -111,7 +112,7 @@ export const useAuthStore = defineStore("auth", () => {
 
     async function logout() {
         localStorage.setItem("accessToken", "")
-        await instance.get("auth/logout")
+        await instanceNest.get("auth/logout")
         isAuth.value = false
         router.push("/login")
     }
@@ -119,11 +120,13 @@ export const useAuthStore = defineStore("auth", () => {
 
     return {
         isAuth,
+        isChecked,
         message,
         status,
         registerData,
         loginData,
         resetPasswordData,
+        isLogin,
         registerUser,
         activateAccount,
         loginUser,

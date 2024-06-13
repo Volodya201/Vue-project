@@ -15,13 +15,47 @@
 </template>
 
 <script lang="ts" setup>
-    import Header from "@/widgets/Header/Header.vue"
-    import Aside from "@/widgets/Aside/Aside.vue"
-    import Alert from "@/widgets/Alert/Alert.vue"
-    import FullscreenLoading from "@/widgets/FullscreenLoading/FullscreenLoading.vue"
-    import { useAlertsStore } from "@/features/alerts/store/alertsStore"
+import Header from "@/widgets/Header/Header.vue"
+import Aside from "@/widgets/Aside/Aside.vue"
+import Alert from "@/widgets/Alert/Alert.vue"
+import FullscreenLoading from "@/widgets/FullscreenLoading/FullscreenLoading.vue"
+import { useAlertsStore } from "@/features/alerts/store/alertsStore"
+import { useAuthStore } from "@/features/auth/store/index"
+import { useApplicationsStore } from "@/features/applications/store/applicationsStore"
+import newMessageSound from "@/assets/newMessage.mp3"
+import { io } from "socket.io-client"
 
-    const alertsStore = useAlertsStore()
+const alertsStore = useAlertsStore()
+
+const applicationsStore = useApplicationsStore()
+
+const authStore = useAuthStore()
+
+authStore.isLogin()
+
+const socket = io("http://localhost:5000")
+
+socket.emit("admin")
+
+const newMessageAudio = new Audio(newMessageSound)
+
+socket.on("newWishAlert", data => {
+    try {
+      applicationsStore.getApplications()
+
+
+      alertsStore.newAlert({
+        type: "information",
+        header: "Новый заказ",
+        message: "Чтобы посмотреть перейдите к заявкам"
+      })
+
+      newMessageAudio.play()
+    } catch (error) {
+      
+    }
+  }
+)
 </script>
 
 <style>
@@ -44,7 +78,7 @@
     overflow-x: hidden;
   }
 
-  body * {
+  h1, h2, h3, h4, h5, h6, p, span, div {
     overflow: hidden;
   }
 

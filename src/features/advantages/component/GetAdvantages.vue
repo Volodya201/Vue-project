@@ -2,6 +2,8 @@
     <Table 
         :condition="advantagesStore.advantages.length > 0"
         message="Нет преимуществ"
+        :roleCondition="true"
+        roleMessage="Недостаточно прав"
         :columns="['Преимущество', 'Описание']"
         :rows="advantagesStore.advantages"
     >

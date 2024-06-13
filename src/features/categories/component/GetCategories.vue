@@ -1,7 +1,9 @@
 <template>
     <Table 
         :condition="categoriesStore.categories.length > 0"
+        :roleCondition="categoriesStore.enoughAccess"
         message="Нет категорий"
+        roleMessage="Недостаточно прав"
         :columns="['Категория']"
         :rows="categoriesStore.categories">
         <template v-slot="categoriesProps: {index:number, item:ICategory}">
